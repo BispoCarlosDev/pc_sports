@@ -1,15 +1,15 @@
-import Modalidade from '#models/modalidade'
-import { createModalidadeValidator, messagesModalidadeProvider } from '#validators/modalidade'
+import Inscricao from '#models/inscricao'
+//import { createInscricaoValidator, messagesInscricaoProvider } from '#validators/inscricao'
 import type { HttpContext } from '@adonisjs/core/http'
 
-export default class ModalidadeController {
+export default class InscricaoController {
   /**
    * Display a list of resource
    */
   async index({ view }: HttpContext) {
-    const modalidades = await Modalidade.all()
+    const inscricoes = await Inscricao.all()
 
-    return view.render('pages/consultamodalidade', { modalidades })
+    return view.render('pages/inscricao', { inscricoes })
   }
 
   /**
@@ -20,17 +20,17 @@ export default class ModalidadeController {
   /**
    * Handle form submission for the create action
    */
-  //async store({ request }: HttpContext) {}
+  async store({ request }: HttpContext) {}
 
   /**
    * Show individual record
    */
-  //async show({ params }: HttpContext) {}
+  async show({ params }: HttpContext) {}
 
   /**
    * Edit individual record
    */
-  //async edit({ params }: HttpContext) {}
+  async edit({ params }: HttpContext) {}
 
   /**
    * Handle form submission for the edit action
@@ -40,5 +40,5 @@ export default class ModalidadeController {
   /**
    * Delete record
    */
-  //async destroy({ params }: HttpContext) {}
+  async destroy({ params }: HttpContext) {}
 }
