@@ -8,7 +8,7 @@ export default class ModalidadeController {
   async index({ view }: HttpContext) {
     const modalidades = await Modalidade.all()
 
-    return view.render('pages/cadastromodalidade', { modalidades })
+    return view.render('pages/consultamodalidade', { modalidades })
   }
 
   /**

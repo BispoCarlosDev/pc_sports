@@ -8,7 +8,7 @@ export default class OrganizacaoController {
   async index({ view }: HttpContext) {
     const organizacoes = await Organizacao.all()
 
-    return view.render('pages/cadastroorganizacao', { organizacoes })
+    return view.render('pages/consultaorganizacao', { organizacoes })
   }
 
   /**

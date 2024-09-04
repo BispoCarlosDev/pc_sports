@@ -8,7 +8,7 @@ export default class PessoaController {
   async index({ view }: HttpContext) {
     const pessoas = await Pessoa.all()
 
-    return view.render('pages/cadastroatleta', { pessoas })
+    return view.render('pages/consultaatleta', { pessoas })
   }
 
   /**
