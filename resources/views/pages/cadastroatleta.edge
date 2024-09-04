@@ -1,0 +1,85 @@
+@extends('layouts.main')
+
+@section('content')
+<h3>CADASTRO DE ATLETA</h3>
+
+<div class="container">
+    <nav class="navbar navbar-light" style="background-color: white"></nav>
+    <nav class="navbar navbar-light" style="background-color: darkgreen"></nav>
+    <nav class="navbar navbar-light" style="background-color: white"></nav>
+    <div class="row align-items-start">
+        <div class="col">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">NOME DO ATLETA:</label>
+                <input id="nomeAtleta" type="text" class="form-control">
+            </div>
+        </div>
+        <div class="col">
+            <div class="mb-3">
+                <label for="exampleFormControlInput2" class="form-label">TELEFONE:</label>
+                <input id="telefoneAtleta" type="text" class="form-control">
+            </div>
+        </div>
+        <div class="col">
+            <div class="mb-3">
+                <label for="exampleFormControlInput3" class="form-label">DATA DE NASCIMENTO:</label>
+                <input id="dataNascimentoAtleta" type="date" class="form-control">
+            </div>
+        </div>
+        <div class="col">
+            <div class="mb-3">
+                <label for="exampleFormControlInput4" class="form-label">CPF DO ATLETA:</label>
+                <input id="cpfAtleta" type="text" class="form-control">
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-light" style="background-color: white"></nav>
+    <nav class="navbar navbar-light" style="background-color: darkgreen"></nav>
+    <nav class="navbar navbar-light" style="background-color: white"></nav>
+
+    <div id="button-container">
+        <button type="button" class="btn btn-warning" onclick="cancelar()">CANCELAR</button>
+        <button type="button" class="btn btn-success" onclick="salvar()">SALVAR</button>
+    </div>
+
+    <div id="success-message" style="display:none;">
+        <div class="alert alert-success" role="alert">
+            Inscrição realizada com sucesso!
+        </div>
+        <button type="button" class="btn btn-primary" onclick="novoRegistro()">NOVO CANDIDATO</button>
+    </div>
+</div>
+
+<script>
+    function salvar() {
+        const atleta = {
+            nome: document.getElementById('nomeAtleta').value,
+            telefone: document.getElementById('telefoneAtleta').value,
+            dataNascimento: document.getElementById('dataNascimentoAtleta').value,
+            cpf: document.getElementById('cpfAtleta').value,
+        };
+
+        fetch('/cadastroatleta/salvar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(atleta),
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('button-container').style.display = 'none';
+            document.getElementById('success-message').style.display = 'block';
+        });
+    }
+
+    function cancelar() {
+        window.location.href = '/cadastroatleta';
+    }
+
+    function novoRegistro() {
+        window.location.href = '/cadastroatleta';
+    }
+</script>
+@endsection

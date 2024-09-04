@@ -14,3 +14,11 @@ router.on('/').render('pages/home')
 // router.on('/autor').render('pages/autor')
 
 router.resource('veiculos', VeiculosController)
+
+Route.get('/cadastroatleta', async ({ view }) => {
+    return view.render('pages/cadastroatleta')
+  })
+  
+  Route.post('/cadastroatleta/salvar', 'PessoaController.salvar')
+  
+  
