@@ -1,6 +1,6 @@
 import vine, { SimpleMessagesProvider } from '@vinejs/vine'
 
-export const messagesVeiculoProvider = new SimpleMessagesProvider({
+export const messagesModalidadeProvider = new SimpleMessagesProvider({
   'required': 'O campo {{ field }} é obrigatório',
   'minLength': 'O campo {{ field }} deve ter pelo menos {{ min }} caracteres',
   'withoutDecimals': 'O campo {{ field }} deve ser inteiro',
@@ -10,18 +10,10 @@ export const messagesVeiculoProvider = new SimpleMessagesProvider({
   'situacao.enum': 'A opção selecionada é inválida, a opção deve ser: liberado ou manutencao',
 })
 
-export const createVeiculoValidator = vine.compile(
+export const createModalidadeValidator = vine.compile(
   vine.object({
-    marca: vine.string().trim().minLength(3),
-    modelo: vine.string().trim().minLength(3),
-    anoFabricacao: vine.number().withoutDecimals().min(2000),
-    situacao: vine.enum(['liberado', 'manutencao']),
-    placa: vine
-      .string()
-      .regex(/^[A-Z]{3}-[0-9][A-Z0-9][0-9]{2}$/)
-      .trim(),
-
-    // AAA-8900
-    // AAA-8A00
+    nome: vine.string().trim().minLength(5), // Nome deve ter pelo menos 3 caracteres
+    sexo: vine.string().trim().maxLength(1), // Sexo deve ter apenas uma letra, M ou F
+    descricao: vine.string().trim().minLength(5), // Data de nascimento deve ser uma data válida
   })
 )

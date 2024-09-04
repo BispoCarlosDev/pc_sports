@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 
-export default class Veiculo extends BaseModel {
+export default class Organizacao extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
@@ -12,7 +12,7 @@ export default class Veiculo extends BaseModel {
   declare cnpj: string
 
   @column()
-  declare razaoSocial: number
+  declare razaoSocial: string
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

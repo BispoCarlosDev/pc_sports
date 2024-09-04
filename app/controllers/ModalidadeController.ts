@@ -1,14 +1,14 @@
-import Pessoa from '#models/pessoa'
+import Modalidade from '#models/modalidade'
 import type { HttpContext } from '@adonisjs/core/http'
 
-export default class PessoaController {
+export default class ModalidadeController {
   /**
    * Display a list of resource
    */
   async index({ view }: HttpContext) {
-    const pessoas = await Pessoa.all()
+    const modalidades = await Modalidade.all()
 
-    return view.render('pages/cadastroatleta', { pessoas })
+    return view.render('pages/cadastromodalidade', { modalidades })
   }
 
   /**
