@@ -39,9 +39,9 @@
                   <td>{{ item.email }}</td>
                   <td>{{ item.senha }}</td>
                   <td>{{ item.nome }}</td>
-                  <td class="text {{ item.ativo ? 'text-success' : 'text-danger' }}">
-                    {{-- {{ item.ativo ? 'Masculino' : 'Feminino' }} --}}
-                    <i class="mdi  {{ item.ativo ? 'mdi-check-all' : 'mdi-close' }}"></i>
+                  <td class="text {{ item.genero ? 'text-success' : 'text-danger' }}">
+                    {{ item.genero === 'Masculino' ? 'Masculino' : 'Feminino' }}
+                    {{--<i class="mdi  {{ item.genero ? 'mdi-check-all' : 'mdi-close' }}"></i>--}}
                   </td>
                   <td style="display: flex;">
                     <a href="{{ route('competidor.edit', [item.id]) }}" class="button mr-1">
