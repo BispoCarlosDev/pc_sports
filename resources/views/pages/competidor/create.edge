@@ -42,7 +42,7 @@
               <div class="form-group">
                 <label for="inputGenero">Gênero</label>
                 <select class="form-control" id="inputGenero" name="genero">
-                  
+
                   <option value="teste">Selecione seu Gênero</option>
                   <option value="Masculino" {{ old('genero') == 'Masculino' ? 'selected' : '' }}>Masculino</option>
                   <option value="Feminino" {{ old('genero') == 'Feminino' ? 'selected' : '' }}>Feminino</option>
@@ -53,11 +53,11 @@
                 @end
 
               </div>
-              
+
               <div class="form-group">
                 <label for="inputTelefone">Telefone</label>
                 <input type="text" class="form-control" id="inputTelefone" value="{{ old('telefone') || '' }}" name="telefone" placeholder="6940028922">
-              
+
                 @inputError('telefone')
                 <span class="text-danger"> {{ $messages.join(', ') }} </span>
                 @end
@@ -66,16 +66,16 @@
               <div class="form-group">
                 <label for="inputCpf">Cpf</label>
                 <input type="text" class="form-control" id="inputCpf" value="{{ old('cpf') || '' }}" name="cpf" placeholder="123.123.123-12">
-              
+
                 @inputError('cpf')
                 <span class="text-danger"> {{ $messages.join(', ') }} </span>
                 @end
-              
+
               </div>
 
               <button type="submit" class="btn btn-primary mr-2">Salvar</button>
               <button class="btn btn-dark">Cancelar</button>
-              
+
             </form>
           </div>
         </div>

@@ -1,68 +1,57 @@
 @layout()
-<div class="meuformulario">
-    <div class="card">
-        <div class="card-body">
-            <h4 class="card-title">CADASTRO DE MODALIDADE</h4>
-            <p class="card-description"> Faça aqui o cadastro das modalidades que estarão presentes no seu evento. </p>
-            <form class="forms-sample">
-                <div class="form-group">
-                    <label for="exampleInputUsername1">NOME DA MODALIDADE</label>
-                    <input type="text" class="form-control" id="nomeModalidade" placeholder="Meia Maratona 21 K">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">SEXO PARA A MODALIDADE</label>
-                    <input type="text" class="form-control" id="sexoModalidade" placeholder="M ou F">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">DESCRIÇÃO DA MODALIDADE</label>
-                    <input type="text" class="form-control" id="descricaoModalidade" placeholder="Meia Maratona de 21 Km para Homens">
-                </div>
+<div class="page-header"></div>
+  <h3 class="page-title"> Modalidade - Novo </h3>
+</div>
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
 
-                <button type="submit" class="btn btn-primary mr-2" onclick="salvar()">SALVAR</button>
-                <button type="button" class="btn btn-dark" onclick="cancelar()">CANCELAR</button>
-                <button type="button" class="btn btn-dark" onclick="novoRegistro()">NOVO CADASTRO</button>
-                
+            <form class="forms-sample" method="POST"
+              action="{{ !modalidade ? route('modalidade.store') : route('modalidade.update', { id: modalidade.id }, { qs: { _method: 'PUT' } }) }}">
+
+              {{ csrfField() }}
+
+              <div class="form-group">
+                <label for="inputName">Nome</label>
+                <input type="text" class="form-control" id="inputName" value="{{ old('nome') || '' }}" name="nome" placeholder="Nome">
+
+                @inputError('nome')
+                <span class="text-danger"> {{ $messages.join(', ') }} </span>
+                @end
+
+              </div>
+              <div class="form-group">
+                <label for="inputGenero">Gênero</label>
+                <select class="form-control" id="inputGenero" name="genero">
+
+                  <option value="teste">Selecione o Gênero</option>
+                  <option value="Masculino" {{ old('genero') == 'Masculino' ? 'selected' : '' }}>Masculino</option>
+                  <option value="Feminino" {{ old('genero') == 'Feminino' ? 'selected' : '' }}>Feminino</option>
+                </select>
+
+                @inputError('genero')
+                  <span class="text-danger"> {{ $messages.join(', ') }} </span>
+                @end
+
+              </div>
+
+              <div class="form-group">
+                <label for="inputTelefone">Descricao</label>
+                <input type="text" class="form-control" id="inputDescricao" value="{{ old('descricao') || '' }}" name="descricao" placeholder="desc do esporte">
+
+                @inputError('descricao')
+                <span class="text-danger"> {{ $messages.join(', ') }} </span>
+                @end
+
+              </div>
+
+              <button type="submit" class="btn btn-primary mr-2">Salvar</button>
+              <button class="btn btn-dark">Cancelar</button>
+
             </form>
-            <style>
-            .meuformulario{
-                width: 1000px;   /* Define a largura do formulário */
-                padding: 20px;  /* Adiciona um espaçamento interno ao formulário */
-            }
-            </style>
+          </div>
         </div>
     </div>
 </div>
-</div>
-
-<script>
-    function salvar() {
-        const atleta = {
-            nome: document.getElementById('nomeAtleta').value,
-            telefone: document.getElementById('telefoneAtleta').value,
-            dataNascimento: document.getElementById('dataNascimentoAtleta').value,
-            cpf: document.getElementById('cpfAtleta').value,
-        };
-
-        fetch('/cadastroatleta/salvar', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(atleta),
-        })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('button-container').style.display = 'none';
-                document.getElementById('success-message').style.display = 'block';
-            });
-    }
-
-    function cancelar() {
-        window.location.href = '/cadastroatleta';
-    }
-
-    function novoRegistro() {
-        window.location.href = '/cadastroatleta';
-    }
-</script>
 @end

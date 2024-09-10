@@ -1,90 +1,81 @@
 @layout()
-<div class="page-header">
-  <h3 class="page-title"> Veículos - Novo </h3>
-  {{-- <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Forms</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Form elements</li>
-    </ol>
-  </nav> --}}
+<div class="page-header"></div>
+  <h3 class="page-title"> Organizaca - Novo </h3>
 </div>
 <div class="row">
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Basic form elements</h4>
-            <p class="card-description"> Basic form elements </p>
-            <form class="forms-sample">
 
-            <form class="forms-sample" method="POST" action="{{ route('veiculos.store') }}">
+            <form class="forms-sample" method="POST"
+              action="{{ !organizacao ? route('organizacao.store') : route('organizacao.update', { id: organizacao.id }, { qs: { _method: 'PUT' } }) }}">
 
               {{ csrfField() }}
 
               <div class="form-group">
-                <label for="exampleInputName1">Name</label>
-                <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
-                <label for="inputMarca">Marca</label>
-                <input type="text" class="form-control" id="inputMarca" name="marca" placeholder="Informe a marca">
+                <label for="inputEmail">Email</label>
+                <input type="text" class="form-control" id="inputEmail" value="{{ old('email') || '' }}" name="email" placeholder="Email">
+
+                @inputError('email')
+                <span class="text-danger"> {{ $messages.join(', ') }} </span>
+                @end
+
               </div>
               <div class="form-group">
-                <label for="exampleInputEmail3">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
-                <label for="inputModelo">Modelo</label>
-                <input type="text" class="form-control" id="inputModelo" name="modelo" placeholder="Informe o modelo. Ex.: Ford, Chevrolet...">
+                <label for="inputPassword">Senha</label>
+                <input type="text" class="form-control" id="inputPassword" value="{{ old('password') || '' }}" name="password" placeholder="Password">
+
+                @inputError('password')
+                <span class="text-danger"> {{ $messages.join(', ') }} </span>
+                @end
+
               </div>
               <div class="form-group">
-              {{-- <div class="form-group">
-                <label for="exampleInputPassword4">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password">
+                <label for="inputName">Nome</label>
+                <input type="text" class="form-control" id="inputName" value="{{ old('nome') || '' }}" name="nome" placeholder="Nome">
+
+                @inputError('nome')
+                <span class="text-danger"> {{ $messages.join(', ') }} </span>
+                @end
+
               </div>
-              </div> --}}
 
               <div class="form-group">
-                <label for="exampleSelectGender">Gender</label>
-                <select class="form-control" id="exampleSelectGender">
-                  <option>Male</option>
-                  <option>Female</option>
-                </select>
-                <label for="inputAnoFabricacao">Ano Fabricação</label>
-                <input type="number" class="form-control" id="inputAnoFabricacao" name="anoFabricacao" placeholder="Informe o ano de fabricação. Ex.: 2000">
+                <label for="inputRazaoSocial">RazaoSocial</label>
+                <input type="text" class="form-control" id="inputRazaoSocial" value="{{ old('razao_social') || '' }}" name="razao_social" placeholder="Clube dos Bocos Ltda.">
+
+                @inputError('razao_social')
+                <span class="text-danger"> {{ $messages.join(', ') }} </span>
+                @end
+
+              </div>
+              <div class="form-group">
+                <label for="inputCnpj">Cpf</label>
+                <input type="text" class="form-control" id="inputCnpj" value="{{ old('cnpj') || '' }}" name="cnpj" placeholder="123.123.123-12">
+
+                @inputError('cnpj')
+                <span class="text-danger"> {{ $messages.join(', ') }} </span>
+                @end
+
               </div>
 
               <div class="form-group">
-                <label>File upload</label>
-                <input type="file" name="img[]" class="file-upload-default">
-                <div class="input-group col-xs-12">
-                  <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
-                  <span class="input-group-append">
-                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                  </span>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="exampleInputCity1">City</label>
-                <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location">
-                <label for="inputSituacao">Situação</label>
+                <label for="inputTelefone">Telefone</label>
+                <input type="text" class="form-control" id="inpuTelefone" value="{{ old('telefone') || '' }}" name="telefone" placeholder="069996106555">
 
-                <select class="form-control" id="inputSituacao" name="situacao">
-                  <option value="">Selecione uma situação</option>
-                  <option value="liberado">Liberado</option>
-                  <option value="manutencao">Manutenção</option>
-                </select>
-              </div>
-              <div class="form-group">
+                @inputError('telefone')
+                <span class="text-danger"> {{ $messages.join(', ') }} </span>
+                @end
 
-              {{-- <div class="form-group">
-                <label for="exampleTextarea1">Textarea</label>
-                <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
               </div>
-              <button type="submit" class="btn btn-primary mr-2">Submit</button>
-              <button class="btn btn-dark">Cancel</button>
-              </div> --}}
+
 
               <button type="submit" class="btn btn-primary mr-2">Salvar</button>
               <button class="btn btn-dark">Cancelar</button>
+
             </form>
           </div>
         </div>
-      </div>
+    </div>
 </div>
 @end

@@ -1,64 +1,69 @@
 @layout()
 <div class="page-header">
-  <h3 class="page-title"> Veículos </h3>
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Forms</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Form elements</li>
-    </ol>
-  </nav>
+  <h3 class="page-title"> Organizações </h3>
 </div>
+
+@flashMessage('notificacao')
+<div class="alert alert-{{ $message.type }}">
+  {{ $message.message }}
+</div>
+@end
+
 <div class="row">
   <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Basic Table</h4>
-        <p class="card-description"> Add class <code>.table</code>
-        </p>
+
+        @if(!organizacao.length)
+        <div class="alert alert-secondary">
+          <i class="mdi mdi-alert-box icon-md"></i> Nenhuma organização foi encontrada na base de dados!
+        </div>
+        @end
+        @if(organizacao.length)
         <div class="table-responsive">
+
           <table class="table">
             <thead>
               <tr>
-                <th>Profile</th>
-                <th>VatNo.</th>
-                <th>Created</th>
-                <th>Status</th>
+                <th>#</th>
+                <th>Email</th>
+                <th>Senha</th>
+                <th>Nome</th>
+                <th>Razao Social</th>
+                <th>Cnpj</th>
+                <th>Telefone</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Jacob</td>
-                <td>53275531</td>
-                <td>12 May 2017</td>
-                <td><label class="badge badge-danger">Pending</label></td>
-              </tr>
-              <tr>
-                <td>Messsy</td>
-                <td>53275532</td>
-                <td>15 May 2017</td>
-                <td><label class="badge badge-warning">In progress</label></td>
-              </tr>
-              <tr>
-                <td>John</td>
-                <td>53275533</td>
-                <td>14 May 2017</td>
-                <td><label class="badge badge-info">Fixed</label></td>
-              </tr>
-              <tr>
-                <td>Peter</td>
-                <td>53275534</td>
-                <td>16 May 2017</td>
-                <td><label class="badge badge-success">Completed</label></td>
-              </tr>
-              <tr>
-                <td>Dave</td>
-                <td>53275535</td>
-                <td>20 May 2017</td>
-                <td><label class="badge badge-warning">In progress</label></td>
-              </tr>
+              @each((item, index) in organizacao)
+                <tr>
+                  <td>{{ index + 1 }}</td>
+                  <td>{{ item.email }}</td>
+                  <td>{{ item.senha }}</td>
+                  <td>{{ item.nome }}</td>
+                  <td>{{ item.razao_social }}</td>
+                  <td>{{ item.cnpj}}</td>
+                  <td>{{ item.telefone }}</td>
+                  <td style="display: flex;">
+                    <a href="{{ route('organizacao.edit', [item.id]) }}" class="button mr-1">
+                      <i class="mdi mdi-border-color"></i>
+                    </a>
+
+                    <form id="form-delete-{{ item.id }}" method="POST"
+                      action="{{ route('organizacao.destroy', { id: item.id  }, { qs: { _method: 'DELETE' } }) }}">
+                      {{ csrfField() }}
+
+                      <a href="#" onclick="document.getElementById('form-delete-{{item.id}}').submit();">
+                        <i onclick="" class="mdi mdi-delete-variant"></i>
+                      </a>
+                    </form>
+                  </td>
+                </tr>
+                @end
             </tbody>
           </table>
         </div>
+        @end
       </div>
     </div>
   </div>
