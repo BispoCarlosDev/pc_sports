@@ -105,10 +105,10 @@ export default class OrganizacaoController {
     if (organizacao?.$isDeleted) {
       session.flash('notificacao', {
         type: 'success',
-        message: `Organizacao excluída com sucesso!`,
+        message: `Organização excluída com sucesso!`,
       })
     }
 
-    return response.redirect().toRoute('Organizacao.index')
+    return response.redirect().toRoute('organizacao.index')
   }
 }

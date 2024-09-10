@@ -83,11 +83,11 @@ export default class ModalidadeController {
     if (modalidade?.$isPersisted) {
       session.flash('notificacao', {
         type: 'warning',
-        message: `Organizacao ${modalidade.nome} atualizada com sucesso!`,
+        message: `Modalidade ${modalidade.nome} atualizada com sucesso!`,
       })
     }
 
-    return response.redirect().toRoute('organizacao.index')
+    return response.redirect().toRoute('modalidade.index')
   }
 
   /**
@@ -107,6 +107,6 @@ export default class ModalidadeController {
       })
     }
 
-    return response.redirect().toRoute('Modalidade.index')
+    return response.redirect().toRoute('modalidade.index')
   }
 }
