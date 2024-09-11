@@ -5,12 +5,12 @@ export default class extends BaseSeeder {
   async run() {
     await Organizacao.createMany([
       {
-        email: 'Fonbec',
-        password: 'Fonbec',
-        nome: 'Fonbec',
-        razao_social: 'Fonbec',
-        cnpj: 'Fonbec',
-        telefone: 'Fonbec',
+        email: 'fundacao@hotmail.com',
+        password: '11223344',
+        nome: 'Funcação Cultural',
+        razao_social: 'Fundação Cultural de Jipa SA',
+        cnpj: '76908628123487',
+        telefone: '69992082241',
       },
     ])
   }

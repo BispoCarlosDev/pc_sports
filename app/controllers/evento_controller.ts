@@ -1,4 +1,5 @@
 import Organizacao from '#models/organizacao'
+import Modalidade from '#models/modalidade'
 import Evento from '#models/evento'
 import { createEventoValidator, messagesEventoProvider } from '#validators/evento'
 import type { HttpContext } from '@adonisjs/core/http'
@@ -12,8 +13,8 @@ export default class EventoController {
 
   async create({ view }: HttpContext) {
     const organizacoes = await Organizacao.all()
-
-    return view.render('pages/evento/create', { organizacoes })
+    const modalidades = await Modalidade.all()
+    return view.render('pages/evento/create', { organizacoes, modalidades })
   }
 
   async store({ request, response, session }: HttpContext) {
@@ -24,6 +25,7 @@ export default class EventoController {
     })
 
     const organizacao = await Organizacao.find(dadosValidos.organizacao)
+    const modalidade = await Modalidade.find(dadosValidos.modalidade)
 
     if (!organizacao) {
       session.flash('notificacao', {
@@ -34,12 +36,21 @@ export default class EventoController {
       return response.redirect().toRoute('evento.index')
     }
 
+    if (!modalidade) {
+      session.flash('notificacao', {
+        type: 'danger',
+        message: `A Modalidade informada não foi encontrada`,
+      })
+    }
+
     const evento = await Evento.create({
         nome: dadosValidos.nome,
         local: dadosValidos.local,
       })
   
       await evento.related('organizacao').associate(organizacao)
+
+      await evento.related('modalidade').associate(modalidade)
   
       if (evento.$isPersisted) {
         session.flash('notificacao', {

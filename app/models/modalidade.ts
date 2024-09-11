@@ -1,5 +1,7 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@adonisjs/lucid/orm'
+//import { EnumDeclaration } from 'typescript'
+//import { VineEnum } from '@vinejs/vine'
 
 export default class Modalidade extends BaseModel {
   @column({ isPrimary: true })
