@@ -67,24 +67,6 @@
               <label for="exampleInputPassword4">Password</label>
               <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password">
             </div> --}}
-            <div class="form-group">
-              <label for="inputDataInicio">Data de Início</label>
-              <input type="text" class="form-control" id="inputDataInicio" name="dataInicio"
-                value="{{ old('dataInicio') || evento?.dataInicio || '' }}"
-                placeholder="Informe a data de Início do Evento">
-              @inputError('dataInicio')
-              <span class="text-danger"> {{ $messages.join(', ') }} </span>
-              @end
-            </div>
-            <div class="form-group">
-              <label for="inputDataFim">Data de Fim</label>
-              <input type="text" class="form-control" id="inputDataFim"
-                value="{{ old('dataFim') || evento?.dataFim || '' }}" name="dataFim"
-                placeholder="Informe a data de Fim do Evento">
-              @inputError('dataFim')
-              <span class="text-danger"> {{ $messages.join(', ') }} </span>
-              @end
-            </div>
             <button type="submit" class="btn btn-primary mr-2">Salvar</button>
             <button class="btn btn-dark">Cancelar</button>
           </form>

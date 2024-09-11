@@ -13,12 +13,6 @@ export default class Evento extends BaseModel {
   @column()
   declare local: string
 
-  @column()
-  declare dataInicio: string
-
-  @column()
-  declare dataFim: string
-
   //@hasMany(() => Evento)
   //declare eventos: HasMany<typeof Evento>
 

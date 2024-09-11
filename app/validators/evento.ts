@@ -16,9 +16,12 @@ export const messagesEventoProvider = new SimpleMessagesProvider({
  */
 export const createEventoValidator = vine.compile(
     vine.object({
+      organizacao: vine.number(),
       nome: vine.string().trim().minLength(8),
       local: vine.string().trim().minLength(8),
-      dataInicio: vine.string().trim().regex(/^\d{2}\/\d{2}\/\d{4}$/),
-      dataFim: vine.string().trim().regex(/^\d{2}\/\d{2}\/\d{4}$/),
+      //dataInicio: vine.date().trim().regex(/^\d{2}\/\d{2}\/\d{4} \d{2}:\d{2}$/),
+      //dataFim: vine.date().trim().regex(/^\d{2}\/\d{2}\/\d{4} \d{2}:\d{2}$/),
+      //dataInicio: vine.string().trim().regex(/^\d{2}\/\d{2}\/\d{4}$/),
+      //dataFim: vine.string().trim().regex(/^\d{2}\/\d{2}\/\d{4}$/),
     })
   )

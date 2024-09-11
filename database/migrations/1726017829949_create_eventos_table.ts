@@ -9,8 +9,6 @@ export default class extends BaseSchema {
 
       table.string('nome').notNullable()
       table.string('local').notNullable()
-      table.dateTime('dataInicio').notNullable()
-      table.dateTime('dataFim').notNullable()
 
       //table.integer('organizacao_id').unsigned().references('id').inTable('organizacaos').onDelete('CASCADE') // Chave estrangeira
 

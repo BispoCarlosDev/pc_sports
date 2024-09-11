@@ -37,8 +37,6 @@ export default class EventoController {
     const evento = await Evento.create({
         nome: dadosValidos.nome,
         local: dadosValidos.local,
-        dataInicio: dadosValidos.dataInicio,
-        dataFim: dadosValidos.dataFim,
       })
   
       await evento.related('organizacao').associate(organizacao)
