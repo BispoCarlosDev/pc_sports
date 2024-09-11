@@ -34,10 +34,10 @@
             <tbody>
               @each((item, index) in modalidade)
                 <tr>
-                  <td>{{ index + 1 }}</td>
+                  <td>{{ item.id }}</td>
                   <td>{{ item.nome }}</td>
                   <td class="text {{ item.genero ? 'text-success' : 'text-danger' }}">
-                    {{ item.genero ? 'Masculino' : 'Feminino' }}
+                    {{ item.genero === 'Masculino' ? 'Masculino' : 'Feminino' }}
                     {{--<i class="mdi  {{ item.genero ? 'mdi-check-all' : 'mdi-close' }}"></i>--}}
                   </td>
                   <td>{{ item.descricao }}</td>

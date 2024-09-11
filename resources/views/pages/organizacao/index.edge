@@ -36,7 +36,7 @@
             <tbody>
               @each((item, index) in organizacao)
                 <tr>
-                  <td>{{ index + 1 }}</td>
+                  <td>{{ item.id }}</td>
                   <td>{{ item.email }}</td>
                   <td>{{ item.nome }}</td>
                   <td>{{ item.razao_social }}</td>

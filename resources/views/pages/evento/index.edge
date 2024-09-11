@@ -33,7 +33,7 @@
             <tbody>
               @each((item, index) in eventos)
                 <tr>
-                  <td>{{ index + 1 }}</td>
+                  <td>{{ item.id }}</td>
                   <td>{{ item.nome }}</td>
                   <td>{{ item.local }}</td>
                   <td style="display: flex;">
