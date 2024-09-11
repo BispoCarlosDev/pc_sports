@@ -41,6 +41,8 @@ export default class EventoController {
         type: 'danger',
         message: `A Modalidade informada não foi encontrada`,
       })
+
+      return response.redirect().toRoute('evento.index')
     }
 
     const evento = await Evento.create({

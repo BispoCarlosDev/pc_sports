@@ -33,7 +33,7 @@
           {{ csrfField() }}
 
           <div class="form-group">
-            <label for="inputOrg">Organização</label>
+            <label for="inputOrganizacao">Organização</label>
 
             <select class="form-control" id="inputOrganizacao" name="organizacao">
               <option value="">Selecione uma Organização</option>
@@ -73,17 +73,13 @@
               @inputError('nome')
               <span class="text-danger"> {{ $messages.join(', ') }} </span>
               @end
-            </div>
-            <div class="form-group">
+          </div>
+          <div class="form-group">
               <label for="inputLocal">Local</label>
               <input type="text" class="form-control" id="inputLocal"
                 value="{{ old('local') || evento?.local || '' }}" name="local"
                 placeholder="Informe o Local do Evento">
-            </div>
-            {{-- <div class="form-group">
-              <label for="exampleInputPassword4">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password">
-            </div> --}}
+          </div>
             <button type="submit" class="btn btn-primary mr-2">Salvar</button>
             <button class="btn btn-dark">Cancelar</button>
           </form>

@@ -1,0 +1,85 @@
+@layout()
+<div class="page-header">
+  <h3 class="page-title">
+    Inscrições - {{ !inscricao ? 'Novo' : `Atualização: ${inscricao.id}` }}
+  </h3>
+</div>
+
+<div class="row">
+  <div class="col-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <form class="forms-sample" method="POST"
+          action="{{ !inscricao ? route('inscricao.store') : route('inscricao.update', { id: inscricao.id }, { qs: { _method: 'PUT' } }) }}">
+          {{ csrfField() }}
+
+          <!-- Evento -->
+          <div class="form-group">
+            <label for="inputEvento">Evento</label>
+            <select class="form-control" id="inputEvento" name="evento">
+              <option value="">Selecione um Evento</option>
+              @if(eventos && eventos.length)
+                @each(item in eventos)
+                  <option value="{{ item.id }}">{{ item.nome }}</option>
+                @end
+              @end
+            </select>
+          </div>
+
+          <!-- Competidor -->
+          <div class="form-group">
+            <label for="inputCompetidor">Competidor</label>
+            <select class="form-control" id="inputCompetidor" name="competidor">
+              <option value="">Selecione um Competidor</option>
+              @if(competidores && competidores.length)
+                @each(item in competidores)
+                  <option value="{{ item.id }}">{{ item.nome }}</option>
+                @end
+              @end
+            </select>
+          </div>
+
+          <!-- Modalidade -->
+          <div class="form-group">
+            <label for="inputModalidade">Modalidade</label>
+            <select class="form-control" id="inputModalidade" name="modalidade">
+              <option value="">Selecione a Modalidade</option>
+              @if(modalidades && modalidades.length)
+                @each(item in modalidades)
+                  <option value="{{ item.id }}">{{ item.nome }}</option>
+                @end
+              @end
+            </select>
+          </div>
+
+          <!-- Valor -->
+          <div class="form-group">
+            <label for="inputValor">Valor</label>
+            <input type="number" class="form-control" id="inputValor" value="{{ old('valor') || inscricao?.valor || '' }}"
+              name="valor" placeholder="Valor da Inscrição">
+            @inputError('valor')
+              <span class="text-danger"> {{ $messages.join(', ') }} </span>
+            @end
+          </div>
+
+          <!-- Status -->
+          <div class="form-group">
+            <label for="inputStatus">Status da Inscrição</label>
+            <select class="form-control" id="inputStatus" name="status">
+              <option value="teste">Qual o Status?</option>
+              <option value="Ativa" {{ old('status') == 'Ativa' ? 'selected' : '' }}>Ativa</option>
+              <option value="Cancelada" {{ old('status') == 'Cancelada' ? 'selected' : '' }}>Cancelada</option>
+            </select>
+            @inputError('status')
+              <span class="text-danger"> {{ $messages.join(', ') }} </span>
+            @end
+          </div>
+
+          <button type="submit" class="btn btn-primary mr-2">Salvar</button>
+          <button class="btn btn-dark">Cancelar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+@end
